@@ -1,15 +1,14 @@
 {
   "name": "voxel-level",
-  "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
+  "version": "0.1.0",
+  "description": "store voxel.js chunks in level.js",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "",
-  "author": "",
+  "repository": "git://github.com/maxogden/voxel-level.git",
+  "keywords": ["leveldb", "level", "voxel", "minecraft"],
+  "author": "max ogden",
   "license": "BSD",
   "dependencies": {
-    "level-js": "~1.0.2"
+    "level-js": "~1.0.2",
+    "voxel-crunch": "0.2.1"
   }
 }

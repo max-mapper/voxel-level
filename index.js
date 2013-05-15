@@ -15,7 +15,7 @@ VoxelLevel.prototype.load = function(chunkPosition, dimensions, cb) {
   var chunkIndex = chunkPosition.join('|') + '|' + chunkLength
   this.db.get(chunkIndex, function(err, rle) {
     if (err) return cb(err)
-    var voxels = new Uint32Array(chunkLength)
+    var voxels = new Uint8Array(chunkLength)
     crunch.decode(rle, voxels)
     cb(false, {position: chunkPosition, voxels: voxels, dimensions: dimensions})
   })
@@ -27,5 +27,3 @@ VoxelLevel.prototype.store = function(chunk, cb) {
   key += '|' + chunk.voxels.length
   this.db.put(key, rle, cb)
 }
-
-// crunch.decode(rle, new Uint32Array(chunk.voxels.length))
