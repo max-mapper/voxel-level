@@ -10,9 +10,9 @@ function VoxelLevel(game, readyCB) {
   this.db.open(readyCB)
 }
 
-VoxelLevel.prototype.load = function(chunkPosition, dimensions, cb) {
+VoxelLevel.prototype.load = function(prefix, chunkPosition, dimensions, cb) {
   var chunkLength = dimensions[0] * dimensions[1] * dimensions[2]
-  var chunkIndex = chunkPosition.join('|') + '|' + chunkLength
+  var chunkIndex = prefix + '|' + chunkPosition.join('|') + '|' + chunkLength
   this.db.get(chunkIndex, function(err, rle) {
     if (err) return cb(err)
     var voxels = new Uint8Array(chunkLength)
@@ -21,9 +21,10 @@ VoxelLevel.prototype.load = function(chunkPosition, dimensions, cb) {
   })
 }
 
-VoxelLevel.prototype.store = function(chunk, cb) {
+VoxelLevel.prototype.store = function(prefix, chunk, cb) {
   var rle = crunch.encode(chunk.voxels)
-  var key = chunk.position.join('|')
+  var key = prefix + '|'
+  key += chunk.position.join('|')
   key += '|' + chunk.voxels.length
   this.db.put(key, rle, cb)
 }

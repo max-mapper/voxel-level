@@ -1,6 +1,6 @@
 {
   "name": "voxel-level",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "store voxel.js chunks in level.js",
   "main": "index.js",
   "repository": "git://github.com/maxogden/voxel-level.git",
