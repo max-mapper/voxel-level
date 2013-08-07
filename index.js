@@ -24,5 +24,8 @@ VoxelLevel.prototype.store = function(worldName, chunk, cb) {
   var rle = crunch.encode(chunk.voxels)
   var key = chunk.position.join('|')
   key += '|' + chunk.voxels.length
-  this.db.sublevel(worldName).put(key, rle, { valueEncoding: 'binary' }, cb)
+  if (rle.length === 80) return cb('empty chunk', rle.length)
+  this.db.sublevel(worldName).put(key, rle, { valueEncoding: 'binary' }, function(err) {
+    cb(err, rle.length)
+  })
 }
